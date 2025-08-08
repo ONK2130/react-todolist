@@ -1,66 +1,369 @@
+/* ========== 原始樣式區塊 ========== */
+/* 基礎重置樣式 - 原始 */
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+/* body 樣式 - 已修改 */
 body {
-    background-color: #3b36cc;
-    color: white;
+    /* 原始：background-color: #3b36cc; */
+    /* 新增：使用漸層藍色背景，模擬 macOS 風格 */
+    background: linear-gradient(to bottom right, 
+        #0ea5e9,  /* sky-500 */
+        #3b82f6,  /* blue-500 */
+        #6366f1,  /* indigo-500 */
+        #8b5cf6,  /* violet-500 */
+        #a855f7   /* purple-500 */
+    );
+    background-attachment: fixed;
+    
+    /* 新增：確保最小高度填滿視窗 */
+    min-height: 100vh;
+    
+    /* 原始：display: flex; flex-direction: column; justify-content: center; */
+    /* 修改：使用更簡潔的置中方式 */
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    font-family: 'Poppins', sans-serif;
+    
+    /* 原始：font-family: 'Poppins', sans-serif; */
+    /* 新增：系統字體堆疊，提供更好的跨平台支援 */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
+/* ========== 新增樣式區塊 ========== */
+
+/* 主容器樣式 - 大幅修改 */
 .wrapper {
+    /* 原始：width: 450px; */
     width: 450px;
-    padding: 30px;
-    background-color: #1a1a40;
-    border-radius: 5px;
-    margin-top: 20px;
+    
+    /* 新增：最大高度限制，避免內容過長 */
+    max-height: 600px;
+    
+    /* 原始：padding: 30px; */
+    /* 修改：增加內邊距，提供更好的視覺空間 */
+    padding: 35px;
+    
+    /* 原始：background-color: #1a1a40; */
+    /* 修改：改為純黑色，符合 Dynamic Island 風格 */
+    background-color: #000000;
+    
+    /* 原始：border-radius: 5px; */
+    /* 修改：更大的圓角，更現代化 */
+    border-radius: 24px;
+    
+    /* 原始：無陰影效果 */
+    /* 新增：多層陰影效果，創造深度感 */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 
+                0 0 120px rgba(255, 255, 255, 0.1),
+                inset 0 0 2px rgba(255, 255, 255, 0.1);
+    
+    /* 新增：細微的邊框，增加層次感 */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* 新增：進入動畫效果 */
+    animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* 新增：滑入動畫關鍵幀 */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 新增：背景漸層動畫 */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 新增：標題樣式 */
+.wrapper h1 {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 25px;
     text-align: center;
+    letter-spacing: -0.5px; /* 新增：字母間距調整 */
 }
 
+/* 輸入表單樣式 - 大幅修改 */
 .create-form {
-    height: 40px;
+    /* 原始：height: 40px; */
+    /* 修改：增加高度，提供更好的點擊區域 */
+    height: 48px;
+    
     width: 100%;
-    margin: 25px 0;
-    border: 1px solid #3b36cc;
+    
+    /* 原始：margin: 25px 0; */
+    /* 修改：增加上下間距 */
+    margin: 30px 0;
+    
+    /* 原始：border: 1px solid #3b36cc; */
+    /* 修改：改為深灰色邊框 */
+    border: 1px solid #222222;
+    
+    /* 新增：圓角邊框 */
+    border-radius: 12px;
+    
     display: flex;
+    
+    /* 新增：隱藏溢出內容 */
+    overflow: hidden;
+    
+    /* 新增：深色背景 */
+    background-color: #111111;
+    
+    /* 新增：過渡動畫效果 */
+    transition: all 0.3s ease;
 }
 
-.create-form>input {
+/* 新增：表單獲得焦點時的效果 */
+.create-form:focus-within {
+    border-color: #0070f3;
+    box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.1);
+}
+
+/* 輸入框樣式 - 修改 */
+.create-form > input {
     outline: none;
     border: none;
     background: none;
-    color: white;
+    
+    /* 原始：color: white; */
+    color: #ffffff;
+    
     width: 100%;
     height: 100%;
-    padding-left: 10px;
+    
+    /* 原始：padding-left: 10px; */
+    /* 修改：左右對稱的內邊距 */
+    padding: 0 16px;
+    
+    /* 新增：字體大小 */
+    font-size: 15px;
 }
 
-.create-form>button {
+/* 新增：輸入框佔位符樣式 */
+.create-form > input::placeholder {
+    color: #666666;
+}
+
+/* 按鈕樣式 - 大幅修改 */
+.create-form > button {
     border: none;
-    background-color: #3b36cc;
+    
+    /* 原始：background-color: #3b36cc; */
+    /* 新增：漸層背景 */
+    background: linear-gradient(135deg, #0070f3 0%, #0051cc 100%);
+    
     color: white;
-    width: 50px;
+    
+    /* 修改：固定寬度確保按鈕大小一致 */
+    width: 70px;
+    min-width: 70px;
+    
     height: 100%;
     cursor: pointer;
+    
+    /* 新增：字體樣式 */
+    font-weight: 500;
+    font-size: 14px;
+    
+    /* 新增：過渡效果 */
+    transition: all 0.2s ease;
+    
+    /* 新增：右側圓角 */
+    border-radius: 0 12px 12px 0;
 }
 
+/* 新增：按鈕懸停效果 */
+.create-form > button:hover {
+    background: linear-gradient(135deg, #0051cc 0%, #003d99 100%);
+    transform: translateX(-2px);
+}
+
+/* 新增：按鈕點擊效果 */
+.create-form > button:active {
+    transform: scale(0.98);
+}
+
+/* 待辦事項樣式 - 大幅修改 */
 .todo {
-    background-color: #3b36cc;
-    height: 40px;
-    padding: 0 10px;
-    margin-top: 10px;
-    border-radius: 5px;
+    /* 原始：background-color: #3b36cc; */
+    /* 修改：深色背景 */
+    background-color: #111111;
+    
+    /* 原始：height: 40px; */
+    /* 修改：使用最小高度，允許內容換行 */
+    min-height: 52px;
+    
+    /* 原始：padding: 0 10px; */
+    /* 修改：增加內邊距 */
+    padding: 12px 16px;
+    
+    /* 原始：margin-top: 10px; */
+    margin-top: 12px;
+    
+    /* 原始：border-radius: 5px; */
+    /* 修改：更大的圓角 */
+    border-radius: 12px;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+    /* 新增：邊框 */
+    border: 1px solid #222222;
+    
+    /* 新增：過渡動畫 */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* 新增：進入動畫 */
+    animation: todoSlideIn 0.3s ease;
 }
 
-.completed {
-    opacity: 0.4;
-    text-decoration: line-through 3px black;
+/* 新增：待辦事項滑入動畫 */
+@keyframes todoSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 新增：待辦事項懸停效果 */
+.todo:hover {
+    background-color: #222222;
+    border-color: #333333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 新增：待辦事項文字樣式 */
+.todo p {
+    /* 新增：未完成的待辦事項使用黃色 */
+    color: #eab308;
+    font-size: 15px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s ease;
+    flex: 1;
+    text-align: left;
+}
+
+/* ⭐ 復原功能視覺效果 - 已完成狀態樣式 */
+.todo.completed {
+    /* 原始：opacity: 0.4; */
+    /* 修改：不使用透明度，保持清晰 */
+    opacity: 1;
+    
+    /* 新增：保持相同背景色 */
+    background-color: #111111;
+}
+
+/* ⭐ 復原功能視覺效果 - 已完成文字樣式 */
+.todo.completed p {
+    /* 原始：text-decoration: line-through 3px black; */
+    /* 修改：簡化刪除線樣式 */
+    text-decoration: line-through;
+    text-decoration-color: #6b7280;
+    
+    /* 新增：已完成的文字使用灰色 */
+    /* 這個顏色變化是復原功能的視覺反饋 */
+    color: #6b7280;
+}
+
+/* 新增：圖標容器樣式 */
+.todo div {
+    display: flex;
+    gap: 8px;
+}
+
+/* 新增：SVG 圖標樣式 */
+.todo svg {
+    width: 18px;
+    height: 18px;
+    color: #9ca3af;
+    transition: all 0.2s ease;
+}
+
+/* 新增：圖標懸停效果 */
+.todo svg:hover {
+    color: #e5e7eb;
+    transform: scale(1.05);
+}
+
+/* 新增：刪除圖標懸停變紅 */
+.todo .delete-icon:hover {
+    color: #ef4444;
+}
+
+/* 新增：編輯圖標懸停變藍 */
+.todo .edit-icon:hover {
+    color: #3b82f6;
+}
+
+/* ⭐ 復原功能圖標樣式 - 完成/復原按鈕 */
+.todo .toggle-icon {
+    color: #9ca3af;  /* 預設灰色 */
+}
+
+/* ⭐ 復原功能圖標 hover 效果 */
+.todo .toggle-icon:hover {
+    color: #e5e7eb;  /* hover 時變亮 */
+}
+
+/* ========== 新增：滾動條樣式 ========== */
+.wrapper {
+    overflow-y: auto;
+}
+
+.wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+
+.wrapper::-webkit-scrollbar-track {
+    background: #0a0a0a;
+    border-radius: 3px;
+}
+
+.wrapper::-webkit-scrollbar-thumb {
+    background-color: #333333;
+    border-radius: 3px;
+}
+
+.wrapper::-webkit-scrollbar-thumb:hover {
+    background-color: #444444;
+}
+
+/* ========== 新增：響應式設計 ========== */
+@media (max-width: 500px) {
+    .wrapper {
+        width: 90%;
+        padding: 25px;
+    }
+    
+    .wrapper h1 {
+        font-size: 24px;
+    }
 }

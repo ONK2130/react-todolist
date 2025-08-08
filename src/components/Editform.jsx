@@ -8,7 +8,7 @@ function EditForm({ todo, editTodo }) {
         editTodo(todo.id, content)
     }
     return <form className="create-form" onSubmit={handleSubmit}>
-        <input type="text" placeholder="Add a new todo"
+        <input type="text" placeholder="Edit todo"
             value={content}
             onChange={(e) => setContent(e.target.value)} />
         <button type="submit">Done</button>
